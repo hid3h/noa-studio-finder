@@ -1,6 +1,6 @@
 require 'line/bot' 
 
-class WebhooksController < ApplicationController
+class Api::V1::WebhooksController < ApplicationController
   def receive
     p "start3", params["events"][0]
 
@@ -37,5 +37,6 @@ class WebhooksController < ApplicationController
 
   def test
     p "test start"
+    render :json => "test start"
   end
 end
