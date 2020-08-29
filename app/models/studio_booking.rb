@@ -1,4 +1,4 @@
-class StudioBooking < ApplicationModel
+class StudioBooking
   ENDPOINT = "https://www.noahstudio.jp/noahweb/Webs/search/1/0/1"
 end
 
