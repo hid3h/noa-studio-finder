@@ -17,6 +17,12 @@
           "containerPort": 3000
         }
       ],
+      "secrets": [
+        {
+          "valueFrom": "noa_rails_master_key",
+          "name": "RAILS_MASTER_KEY"
+        }
+      ],
       "memory": null,
       "memoryReservation": 128,
       "volumesFrom": [],
