@@ -19,6 +19,7 @@ services:
     volumes:
       - ./:/myapp
       - hoge:/myapp/frontend
+      - hoge:/myapp/cdk-deploy
     environment:
       RAILS_ENV: development
 
