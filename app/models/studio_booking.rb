@@ -3,15 +3,16 @@ class StudioBooking
 
   # date=2020-08-30
   class << self
-    def search(date: Time.zone.now)
-      p "date2", date
+    def search(date: Time.zone.now, branchlist: [18, 6, 16, 76, 79, 78, 77])
+      p "date2", date.class
       # TODO 日本時間に変更
+      # 秋葉原18, 駒沢6, 銀座16, 新宿76, 代々木79, 学芸大78, 都立大77
 
-      branchlist = "18%2C6%2C16%2C76%2C79%2C78%2C77"
       sdate = "2020-09-05+20%3A00%3A00"
       edate = "2020-09-05+22%3A00%3A00"
       roomsizelist = ""
-      resp = Faraday.post(ENDPOINT, "all_branch_id=1&branchlist=#{branchlist}&car_flg=0&recorder_flg=0&sub_room_flg=0&piano_flg=0&sdate=#{sdate}&edate=#{edate}&roomsizelist=#{roomsizelist}")
+      # 6_10, 10_20
+      resp = Faraday.post(ENDPOINT, "all_branch_id=1&branchlist=#{branchlist.join(',')}&car_flg=0&recorder_flg=0&sub_room_flg=0&piano_flg=0&sdate=#{sdate}&edate=#{edate}&roomsizelist=#{roomsizelist}")
 
       body = JSON.parse resp.body
       p "body_json", body
