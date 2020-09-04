@@ -1,5 +1,22 @@
 class StudioBooking
   ENDPOINT = "https://www.noahstudio.jp/noahweb/Webs/search/1/0/1"
+
+  # date=2020-08-30
+  class << self
+    def search(date: Time.zone.now)
+      p "date2", date
+      # TODO 日本時間に変更
+
+      branchlist = "18%2C6%2C16%2C76%2C79%2C78%2C77"
+      sdate = "2020-09-05+20%3A00%3A00"
+      edate = "2020-09-05+22%3A00%3A00"
+      roomsizelist = ""
+      resp = Faraday.post(ENDPOINT, "all_branch_id=1&branchlist=#{branchlist}&car_flg=0&recorder_flg=0&sub_room_flg=0&piano_flg=0&sdate=#{sdate}&edate=#{edate}&roomsizelist=#{roomsizelist}")
+
+      body = JSON.parse resp.body
+      p "body_json", body
+    end
+  end
 end
 
 # await fetch("https://www.noahstudio.jp/noahweb/Webs/search/1/0/1", {

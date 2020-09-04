@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post "webhooks", to: 'webhooks#receive'
       get "test", to: 'webhooks#test'
+      get 'studios', to: 'studios#index' 
     end
   end
 end
