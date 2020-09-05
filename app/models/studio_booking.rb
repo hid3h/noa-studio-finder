@@ -31,6 +31,7 @@ class StudioBooking
 
           if hash.has_key?(studio_id)
             hash[studio_id][:aki] << studio["0"].merge({price: studio["m_price0"]["price0"]})
+            hash[studio_id][:aki_time_lies] << studio["0"].merge({price: studio["m_price0"]["price0"]})
           else
             hash[studio_id] = studio["m_stu"].merge({
               id: studio_id,

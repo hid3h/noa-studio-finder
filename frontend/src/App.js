@@ -29,17 +29,37 @@ function App() {
     .then((res) => {
       console.log('res', res)
 
-      const tempColumns = []
+      const tempColumns = [
+        {
+          title: '時間',
+          dataIndex: 'time',
+          key: 'time'
+        }
+      ]
       const tempdataSource = []
-      Object.keys(res.data).map((key) => {
+      Object.keys(res.data).map((key, index) => {
         const studio = res.data[key]
         console.log('studio', studio)
         tempColumns.push({
           title: studio["web_branch_name"] + studio["studio_name"],
+          dataIndex: key,
           key: key // studio_id    
         })
+
+        const param = {
+          key: index,
+          time: 6 + index
+        }
+        Object.keys(res.data).map((key) => {
+          param[key] = studio.time_list.indexOf(params[time]) ? "○" : "x" 
+        })
+
+        console.log('param', param)
+        tempdataSource.push(param)
       })
+
       setColumns(tempColumns)
+      setDataSource(tempdataSource)
     })
   }
 
