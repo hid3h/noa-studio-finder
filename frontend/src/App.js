@@ -37,64 +37,34 @@ function App() {
         }
       ]
       const tempdataSource = []
-      Object.keys(res.data).map((key, index) => {
-        const studio = res.data[key]
-        console.log('studio', studio)
+      Object.keys(res.data).map((studioId, index) => {
+        const studio = res.data[studioId]
         tempColumns.push({
           title: studio["web_branch_name"] + studio["studio_name"],
-          dataIndex: key,
-          key: key // studio_id    
+          dataIndex: studioId,
+          key: studioId
         })
 
-        const param = {
-          key: index,
-          time: 6 + index
+        if (index < 18) {
+          // 23時まで追加
+          const param = {
+            key: index,
+            time: 6 + index
+          }
+          Object.keys(res.data).map((studioId) => {
+            const studio = res.data[studioId]
+            param[studioId] = studio["aki"][6 + index] ? studio["aki"][6 + index]["price"] : "☓"
+          })
+        　tempdataSource.push(param)
         }
-        Object.keys(res.data).map((key) => {
-          param[key] = studio.time_list.indexOf(params[time]) ? "○" : "x" 
-        })
-
-        console.log('param', param)
-        tempdataSource.push(param)
       })
 
       setColumns(tempColumns)
       setDataSource(tempdataSource)
     })
+
+    setLoading(false)
   }
-
-  // const columns = [
-  //   {
-  //     title: 'Name',
-  //     dataIndex: 'name',
-  //     key: 'name',
-  //   },
-  //   {
-  //     title: 'Age',
-  //     dataIndex: 'age',
-  //     key: 'age',
-  //   },
-  //   {
-  //     title: 'Address',
-  //     dataIndex: 'address',
-  //     key: 'address',
-  //   },
-  // ];
-
-  // const dataSource = [
-  //   {
-  //     key: '1',
-  //     name: 'Mike',
-  //     age: 32,
-  //     address: '10 Downing Street',
-  //   },
-  //   {
-  //     key: '2',
-  //     name: 'John',
-  //     age: 42,
-  //     address: '10 Downing Street',
-  //   },
-  // ];
 
   return (
     <>
@@ -107,7 +77,7 @@ function App() {
             </Button>
           </div>
           <div>
-            <Table dataSource={dataSource} columns={columns} />;
+            <Table dataSource={dataSource} columns={columns} pagination={false} />;
           </div>
         </Content>
         <Footer>Footer</Footer>

@@ -29,15 +29,18 @@ class StudioBooking
         json["studiolist"].each do |studio|
           studio_id = studio["m_stu"]["id"]
 
+          studio_aki_time = DateTime.parse(studio["0"]["startdatetime"]).hour # "0":{"startdatetime":"2020/09/05 14:00:00", "enddatetime":"2020/09/05 15:00:00", "enable_flg":"1"}
+          studio_aki_hash = {}
+          studio_aki_hash[studio_aki_time] = {price: studio["m_price0"]["price0"]}
+
           if hash.has_key?(studio_id)
-            hash[studio_id][:aki] << studio["0"].merge({price: studio["m_price0"]["price0"]})
-            hash[studio_id][:aki_time_lies] << studio["0"].merge({price: studio["m_price0"]["price0"]})
+            hash[studio_id][:aki] = hash[studio_id][:aki].merge(studio_aki_hash)
           else
             hash[studio_id] = studio["m_stu"].merge({
               id: studio_id,
               web_branch_name: studio["m_bra"]["web_branch_name"],
               branch_name: studio["m_bra"]["branch_name"],
-              aki: [studio["0"].merge({price: studio["m_price0"]["price0"]})]
+              aki: studio_aki_hash
             })
           end
         end
