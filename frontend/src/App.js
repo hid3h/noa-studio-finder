@@ -64,9 +64,9 @@ function App() {
 
       setColumns(tempColumns)
       setDataSource(tempdataSource)
-    })
 
-    setLoading(false)
+      setLoading(false)
+    })
   }
 
   return (
