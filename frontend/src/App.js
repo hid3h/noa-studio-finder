@@ -10,7 +10,7 @@ import { SearchOutlined } from '@ant-design/icons';
 
 const { Footer, Content } = Layout;
 
-const apiBaseUrl = process.env.NODE_ENV === 'production' ? 'https://ponest.net/api/v1' : 'http://127.0.0.1:2002/api/v1'
+const apiBaseUrl = process.env.NODE_ENV === 'production' ? 'https://noahstudio-search.com/api/v1' : 'http://127.0.0.1:2002/api/v1'
 const axios = Axios.create({
   baseURL: apiBaseUrl
 })
