@@ -53,10 +53,13 @@ function App() {
           }
           Object.keys(res.data).map((studioId) => {
             const studio = res.data[studioId]
-            param[studioId] = studio["aki"][6 + index] ? studio["aki"][6 + index]["price"] : "☓"
+            param[studioId] = studio["aki"][6 + index] ? studio["aki"][6 + index]["price"] : "☓";
+            return null
           })
         　tempdataSource.push(param)
         }
+
+        return null
       })
 
       setColumns(tempColumns)
