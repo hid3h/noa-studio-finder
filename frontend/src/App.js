@@ -71,19 +71,21 @@ function App() {
 
   return (
     <>
-      <Layout>
-        <h1>{title}</h1>
+      <Layout className="text-center">
+        <h1 className="mt-10">{title}</h1>
         <Content>
-          <div>
+          <div className="mt-20">
             <Button type="primary" icon={<SearchOutlined />} size='large' loading={loading} onClick={search}>
               スタジオ検索
             </Button>
           </div>
-          <div>
-            <Table dataSource={dataSource} columns={columns} pagination={false} />;
-          </div>
+          {dataSource.length > 0 &&
+            <div className="mt-20">
+              <Table dataSource={dataSource} columns={columns} pagination={false} if/>
+            </div>
+          }
         </Content>
-        <Footer>Footer</Footer>
+        <Footer>created by <a href="https://twitter.com/_hid3" target="blank">@_hid3</a></Footer>
       </Layout>
     </>
   );
