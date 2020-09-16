@@ -44,5 +44,7 @@ module Myapp
         end
       end
     end
+
+    config.hosts << "7ea7d4340124.ngrok.io"
   end
 end
